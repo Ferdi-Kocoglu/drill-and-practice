@@ -50,23 +50,3 @@ To run local automated End-to-End tests first remember to run command "docker co
 Then please start the app again first with "docker compose up" command and stop it again with "CRTL" + "C" keyboard shortcut.
 Now you can run the tests with "docker compose run --entrypoint=npx e2e-playwright playwright test --retries=5 && docker compose rm -sf" command.
 Note! The first test may fail on the first try due to slow start, hence the command above enables few retries for each test.
-
-## project.env file details for local testing
-
-#Database configuration for PostgreSQL (running in container called "database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242")
-POSTGRES_USER=username
-POSTGRES_PASSWORD=password
-POSTGRES_DB=database
-
-#Database configuration for Flyway (used for database migrations)
-FLYWAY_USER=username
-FLYWAY_PASSWORD=password
-FLYWAY_URL=jdbc:postgresql://database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242:5432/database
-
-#Database configuration for Deno's PostgreSQL driver
-PGUSER=username
-PGPASSWORD=password
-PGHOST=database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242
-PGPORT=5432
-PGDATABASE=database
-
