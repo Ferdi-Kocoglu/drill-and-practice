@@ -40,7 +40,7 @@ email: admin@admin.com
 password: 123456
 
 ## Online deployment
-
+https://drill-and-practice-074x.onrender.com
 
 ## Guidelines for running locally
 You can run the application locally by navigating to root folder with terminal and running "docker compose up" command.
