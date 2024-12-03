@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: drill_and_practice
+    env: deno
+    plan: free
+    buildCommand: "deno cache app.js"
+    startCommand: "deno run --allow-net --allow-read --allow-env app.js"
+    envVars:
+      - key: DATABASE_URL
+        fromGroup: drill_and_practice_env_group
+    disk:
+      sizeGB: 1
+      mountPath: /mnt/data
