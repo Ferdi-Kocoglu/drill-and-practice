@@ -53,17 +53,17 @@ Note! The first test may fail on the first try due to slow start, hence the comm
 
 ## project.env file details for local testing
 
-#Database configuration for PostgreSQL (running in container called "database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242")
+# Database configuration for PostgreSQL (running in container called "database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242")
 POSTGRES_USER=username
 POSTGRES_PASSWORD=password
 POSTGRES_DB=database
 
-#Database configuration for Flyway (used for database migrations)
+# Database configuration for Flyway (used for database migrations)
 FLYWAY_USER=username
 FLYWAY_PASSWORD=password
 FLYWAY_URL=jdbc:postgresql://database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242:5432/database
 
-#Database configuration for Deno's PostgreSQL driver
+# Database configuration for Deno's PostgreSQL driver
 PGUSER=username
 PGPASSWORD=password
 PGHOST=database-p2-e6c6dab2-56ff-4156-a2be-1da7aec7e242
