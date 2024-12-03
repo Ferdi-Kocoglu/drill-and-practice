@@ -1,0 +1,38 @@
+<% layout("./layouts/layout.eta") %>
+<h1><%= it.topic.name %></h1>
+
+<h2>Add a question!</h2>
+
+<p>Add questions to your selected topic with the form below. You can choose to select a question to add options by clicking existing question from the list at the bottom.</p>
+
+<% if (it.validationErrors) { %>
+<ul>
+    <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<form method="POST" action="/topics/<%= it.topic.id %>/questions">
+Question text: <br/>
+<input type="text" name="question_text" value="<%= it.question_text ? it.question_text : "" %>" /><br/>
+<input type="submit" value="Add" /><br/>
+</form>
+
+<h2>Questions:</h2>
+
+<% if (it.questions && it.questions.length > 0) { %>
+<ul>
+<% it.questions.forEach(question => { %>
+    <li>
+        <a href="/topics/<%= it.topic.id %>/questions/<%= question.id %>"><%= question.question_text %></a> 
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No questions available.</p>
+<% } %>
+
+<p><a href="/topics">Back to topics</a></p>

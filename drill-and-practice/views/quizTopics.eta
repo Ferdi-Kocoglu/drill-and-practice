@@ -1,0 +1,14 @@
+<% layout("./layouts/layout.eta") %>
+<h1>Quiz topics</h1>
+<p>Select a topic that you want to have a quiz on! After this random questions from the topic will be asked.</p>
+<% if (it.topics && it.topics.length > 0) { %>
+<ul>
+<% it.topics.forEach(topic => { %>
+    <li>
+        <a href="/quiz/<%= topic.id %>"><%= topic.name %></a> 
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No topics available.</p>
+<% } %> 

@@ -1,0 +1,41 @@
+<% layout("./layouts/layout.eta") %>
+<h1>Topics</h1>
+
+<p>Click on a topic to select it and start adding questions to it!</p>
+
+<% if (it.topics && it.topics.length > 0) { %>
+<ul>
+<% it.topics.forEach(topic => { %>
+    <li>
+        <a href="/topics/<%= topic.id %>"><%= topic.name %></a> 
+        <% if (it.user && it.user.admin) { %>
+            <form method="POST" action="/topics/<%= topic.id %>/delete"><input type="submit" value="Delete" /></form>
+        <% } %>
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No topics available.</p>
+<% } %> 
+
+<% if (it.user && it.user.admin) { %>
+    <h2>Add new topic</h2>
+    <p>Add new topics to the application with the form below. As admin you can also delete existing topics from the list above.</p>
+
+    <% if (it.validationErrors) { %>
+    <ul>
+        <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+            <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+                <li><%= err %></li>
+            <% }); %>
+        <% }); %>
+    </ul>
+    <% } %>
+
+    <form method="POST" action="/topics">
+    Name:<br/>
+    <input type="text" name="name" value="<%= it.name ? it.name : "" %>" /><br/>
+    <input type="submit" value="Add" />
+
+    </form>
+<% } %>

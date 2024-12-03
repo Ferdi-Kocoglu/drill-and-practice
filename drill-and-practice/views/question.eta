@@ -1,0 +1,46 @@
+<% layout("./layouts/layout.eta") %>
+<h1><%= it.question.question_text %></h1>
+
+<h2>Options</h2>
+<p>You can add options to selected questions from the form below. Check the box if that answer will be correct.</p>
+<p>You can also delete options from the list below. If all options have been deleted you can delete the question itself.</p>
+<% if (it.options && it.options.length > 0) { %>
+<ul>
+<% it.options.forEach(option => { %>
+    <li>
+        <%= option.option_text %> - 
+        <% if (option.is_correct) { %>
+            Correct
+        <% } else { %>
+            Incorrect
+        <% } %>
+        <form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/options/<%= option.id %>/delete"><input type="submit" value="Delete option" /></form>
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+<p>No options available.</p>
+<form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/delete"><input type="submit" value="Delete question" /></form>
+<% } %> 
+
+<h2>Add new answer option</h2>
+
+<% if (it.validationErrors) { %>
+<ul>
+    <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<form method="POST" action="/topics/<%= it.question.topic_id %>/questions/<%= it.question.id %>/options">
+Option text: <br/>
+<input type="text" name="option_text" value="<%= it.option_text ? it.option_text : "" %>" /><br/>
+Correct? <br/>
+<input type="checkbox" name="is_correct" <% if (it.is_correct) { %> checked <% } %> /><br/>
+<input type="submit" value="Add" /><br/>
+</form>
+
+<p><a href="/topics/<%= it.question.topic_id %>">Back to topic</a></p>

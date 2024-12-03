@@ -1,0 +1,22 @@
+<% layout("./layouts/layout.eta") %>
+
+<a href="/topics">See topics</a><br/>
+<a href="/auth/login">Login</a><br/>
+<a href="/auth/register">Register</a><br/>
+
+<h2>Description</h2>
+<p>
+Welcome to Drill and Practice!<br/>
+Drill and practice platform is web application for studying and rehearsing different topics.<br/>
+Add any topics and any questions about it and then quiz yourself to reheare!<br/>
+Web application can be navigated with navbar on top of the page.<br/>
+Add new topics and questions through topics page and quiz through quiz page.<br/>
+Page requires login to use so please register and login first using register links above.<br/>
+</p>
+
+<h2>Statistics</h2>
+<table>
+<tr><td>Topics created</td><td><%= it.topicCount %></td></tr>
+<tr><td>Questions created</td><td><%= it.questionCount %></td></tr>
+<tr><td>Questions answered</td><td><%= it.answerCount %></td></tr>
+</table>
